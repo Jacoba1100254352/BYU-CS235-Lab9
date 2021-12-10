@@ -52,8 +52,6 @@ public:
     ///   Clear Functions   ///
     void clear() override;
     void recClear(Node*&);
-
-    bool insert(int i);
 };
 
 #endif //AVL_H
