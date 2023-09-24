@@ -9,7 +9,7 @@
 #include "BST.h"
 #include "AVL.h"
 
-string resizedBuffer(int, const string&);
+string resizedBuffer(unsigned, const string&);
 
 using namespace std;
 
@@ -17,8 +17,8 @@ int main() {
     for (int i = 0; i < 2; i++) // Insert Remove
         for (int j = 0; j < 2; j++) { // Random Ordered
             const int NUM_TYPES = 5;
-            const int NUM_IT = 4; // Changes number of N's
-            const int BASE_N = 1000; // Changes the number N starts at
+            const int NUM_IT = 3; // Changes number of N's
+            const int BASE_N = 10; // Changes the number N starts at
             clock_t timing;
             clock_t times[NUM_IT][NUM_TYPES + 1] = {0};
 
@@ -26,7 +26,7 @@ int main() {
             ///   Use random library to effectively randomize the values   ///
             std::random_device rd;
             std::mt19937 mt(rd());
-            std::uniform_real_distribution<> dist(numeric_limits<int>::min(), numeric_limits<int>::max() + 1); // Random number between numeric_limits<int>::min() and numeric_limits<int>::max() (exclusive numeric_limits<int>::max() + 1)
+            std::uniform_real_distribution<> dist(numeric_limits<int>::min(), numeric_limits<int>::max()); // Random number between numeric_limits<int>::min() and numeric_limits<int>::max() (exclusive numeric_limits<int>::max() + 1)
 
 
             // select one of the following implementations of a set by declaring the variable s to be of that type
@@ -99,7 +99,7 @@ int main() {
             ///   Print Timing Table   ///
             (i == 0) ? cout << "\nRandom" : cout << "\nOrdered";
             (i == 0) ? cout << " insert" : cout << " remove";
-            const int BUFFER_LEN = 18;
+            const unsigned BUFFER_LEN = 18;
             string buffer(BUFFER_LEN, ' ');
             string output = "\n" + resizedBuffer(BUFFER_LEN, "  N") + resizedBuffer(BUFFER_LEN, "set") +
                             resizedBuffer(BUFFER_LEN, "unordered_set")
@@ -118,7 +118,7 @@ int main() {
     return 0;
 }
 
-string resizedBuffer(const int LENGTH, const string& text)
+string resizedBuffer(const unsigned LENGTH, const string& text)
 {
     string buffer(LENGTH - text.size(),' ');
     return text + buffer;
